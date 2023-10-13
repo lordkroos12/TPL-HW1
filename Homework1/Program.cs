@@ -23,8 +23,6 @@ namespace Homework1
 
             }
             Console.WriteLine($"The average word length is: {sb.Length / wordCount}");
-
-
         }
         public static void RemoveSpecialCharacters()
         {
@@ -83,31 +81,27 @@ namespace Homework1
 
         static void Main(string[] args)
         {
-            Stopwatch sp = new Stopwatch();
-            sp.Start();
-            Thread t1 = new Thread(() => RemoveSpecialCharacters());
+            Thread t1 = new Thread(RemoveSpecialCharacters);
             t1.Start();
-            Thread t2 = new Thread(() => WordCount());
+            Thread t2 = new Thread(WordCount);
             t1.Join();
             t2.Start();
-            Thread t3 = new Thread(() => ShortestWord());
+            Thread t3 = new Thread(ShortestWord);
             t3.Start();
-            Thread t4 = new Thread(() => LongestWord());
+            Thread t4 = new Thread(LongestWord);
             t4.Start();
-            Thread t5 = new Thread(() => AverageWordLenght());
+            Thread t5 = new Thread(AverageWordLenght);
             t2.Join();
             t5.Start();
-            Thread t6 = new Thread(() => LeastCommonWord());
+            Thread t6 = new Thread(LeastCommonWord);
             t6.Start();
-            Thread t7 = new Thread(() => MostCommonWord());
+            Thread t7 = new Thread(MostCommonWord);
             t7.Start();
             t3.Join();
             t4.Join();
             t5.Join();
             t6.Join();
             t7.Join();
-            sp.Stop();
-            Console.WriteLine($"Elapsed time: {sp.ElapsedMilliseconds} ms");
         }
 
         private static void MostCommonWord()
