@@ -78,7 +78,6 @@ namespace Homework1
 
         static void Main(string[] args)
         {
-            Stopwatch sw = Stopwatch.StartNew();
             Console.WriteLine("How is your book file named?");
             string filename = Console.ReadLine();
             text = File.ReadAllText(filename + ".txt");
