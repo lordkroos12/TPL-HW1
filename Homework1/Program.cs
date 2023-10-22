@@ -4,12 +4,9 @@ using System.Text;
 
 namespace Homework1
 {
-    //Average elapsed time of the multithread program: 273,8ms 
-    //Average elapsed time of the non-multithread program: 303,6ms
-
     internal class Program
     {
-        static string text = File.ReadAllText("book.txt");
+        static string text;
         public static int wordCount = 0;
         public static void AverageWordLenght()
         {
@@ -81,10 +78,23 @@ namespace Homework1
 
         static void Main(string[] args)
         {
-            Thread t1 = new Thread(RemoveSpecialCharacters);
-            t1.Start();
+            Stopwatch sw = Stopwatch.StartNew();
+            Console.WriteLine("How is your book file named?");
+            string filename = Console.ReadLine();
+            text = File.ReadAllText(filename + ".txt");
+
+            //Average elapsed time of the non-multithread program: 303,6ms
+            //RemoveSpecialCharacters();
+            //WordCount();
+            //ShortestWord();
+            //LongestWord();
+            //AverageWordLenght();
+            //LeastCommonWord();
+            //MostCommonWord();
+
+            //Average elapsed time of the multithread program: 233,8ms 
+            RemoveSpecialCharacters();
             Thread t2 = new Thread(WordCount);
-            t1.Join();
             t2.Start();
             Thread t3 = new Thread(ShortestWord);
             t3.Start();
